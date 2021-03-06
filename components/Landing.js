@@ -4,9 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { ScreenContainer } from 'react-native-screens';
 
 
-
 export default function Landing(props) {
-    console.log(props)
     return (
         <View style={styles.landingContainer}>
             <Text
@@ -41,6 +39,4 @@ const styles = StyleSheet.create({
         marginBottom:15,
         fontSize:23,
     },
-    
-   
   });

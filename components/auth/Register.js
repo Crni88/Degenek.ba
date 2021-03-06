@@ -4,7 +4,8 @@ import {useState} from "react";
 import {View, Button, SafeAreaView,StyleSheet,Text,TextInput} from 'react-native'
 import { Input } from 'react-native-elements';
 
-import firebase from 'firebase'
+import {registerControler} from './loginController'
+
 
 export default function Register(props) {
       const [email,setemail] = useState("")
@@ -12,7 +13,11 @@ export default function Register(props) {
       const [password,setpassword] = useState("")
 
       const registrirajUsera = () => {
-        console.log("Registriram usera");
+       console.log("Registrujem Usera");
+        registerControler(email,password,registerComplete)
+      }
+      const registerComplete = ()=>{
+        props.navigation.navigate('Profile');
       }
     return (
         <View style={styles.register}>
@@ -66,8 +71,6 @@ const styles = StyleSheet.create({
     padding:20,   
      justifyContent:'center'
     },
-    input:{
-    },
     naslov:{
         textAlign: 'center', // <-- the magic
         fontSize:24,
@@ -80,12 +83,10 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:20,
-
     },
     prijava:{
         fontSize:20,
         color: 'red'
-
     },
   });
 
