@@ -13,13 +13,15 @@ export default function Login(props) {
     const [password,setpassword] = useState("")
 
     const ulogujUsera = () => {
-        console.log("Email ",email," Password ", password);
+        //console.log("Email ",email," Password ", password);
         loginController(email,password,loginComplete);
     }
     
-    const loginComplete = ()=>{
-        console.log("Uspjesno ulogovano!");
-        props.navigation.navigate('Profile');
+    const loginComplete = (user)=>{
+        //Ovdje ispisem taj user ID
+        console.log("User:" ,user);
+        const id = user;
+        props.navigation.navigate('Profile',id);
     }
 
     return (

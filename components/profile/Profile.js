@@ -12,8 +12,10 @@ import{
     Avatar,Title,Caption,Text,TouchableRipple,
 } from 'react-native-paper'
 
-export default function Profile(props) {
-    return (
+export default function Profile(profilKorisnika) {
+  //KAKO ONDA OVDJE ISPISE CITAV JEBENI OBJEKAT :)) 
+  console.log("Profil korisnika",profilKorisnika);
+    return ( 
         <SafeAreaView style={styles.container}>
         <View style={styles.userInfoSection}>
           <View style={{flexDirection: 'row', marginTop: 15}}>
@@ -42,7 +44,7 @@ export default function Profile(props) {
           </View>
           <View style={styles.row}>
           <MaterialCommunityIcons name="email-open-multiple-outline" size={24} color="black" />
-            <Text style={{color:"#777777", marginLeft: 20}}>zika_turkovic@email.com</Text>
+            <Text style={{color:"#777777", marginLeft: 20}}>{}</Text>
           </View>
         </View>
   

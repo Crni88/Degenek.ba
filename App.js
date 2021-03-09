@@ -15,14 +15,6 @@ import EditProfile from './components/profile/EditProfile';
 const Stack = createStackNavigator();
 export default function App() {
   return (
-
-    <EditProfile>
-      
-    </EditProfile>
-      /* 
-    <Profile>
-
-    </Profile>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Landing" component={Landing}></Stack.Screen>
@@ -30,9 +22,9 @@ export default function App() {
         <Stack.Screen name="Login" component={Login}></Stack.Screen>
         <Stack.Screen name="Dashboard" component={Dashboard}></Stack.Screen>
         <Stack.Screen name="Profile" component={Profile}></Stack.Screen>
-
+        <Stack.Screen name="EditProfile" component={Profile}></Stack.Screen>
       </Stack.Navigator>
-    </NavigationContainer>*/
+    </NavigationContainer>
 
   );
 }

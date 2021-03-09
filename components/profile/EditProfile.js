@@ -1,6 +1,8 @@
 import React from 'react'
 import {useState} from "react";
 import {View, Button, SafeAreaView,StyleSheet,TextInput,TouchableOpacity} from 'react-native'
+import { Input } from 'react-native-elements';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -11,11 +13,38 @@ import{
     Avatar,Title,Caption,Text,TouchableRipple,
 } from 'react-native-paper'
 
+import {addUserData} from '../auth/loginController'
+
+
 export default function Profile(props) {
     const [imePrezime,setImePrezime] = useState("")
     const [korisnickoIme,setKorisnickoIme] = useState("")
+    const [prekrsaj,setPrekrsaji] = useState("")
+    const [telefon,setTelefon] = useState("")
+    const [email,setEmail] = useState("")
+
    //const [value, onChangeText] = React.useState('Useless Placeholder');
 
+   const spasiIzmjene = () =>{
+    /*console.log("Ime i prezime korisnika je",imePrezime);
+    console.log("Korisnicko ime korisnika je",korisnickoIme);
+    console.log("Korisnicko ime korisnika je",prekrsaj);
+    console.log("Korisnicko ime korisnika je",telefon);
+    console.log("Korisnicko ime korisnika je",email);*/
+      
+    const korisnikoviPodaci ={
+        _imePrezime : imePrezime,
+        _korisnickoIme:korisnickoIme,
+        _brojPrekrsaja:prekrsaj,
+        _telefon:telefon,
+        _email:email
+      }
+      console.log(korisnikoviPodaci);
+     // addUserData("kahric.tarik@gmail.com","123456",korisnikoviPodaci,editComplete);
+   }
+   const editComplete = ()=>{
+       console.log("Uspjesno ste editovali korisnika");
+  }
     return (
         <SafeAreaView style={styles.container}>
         <View style={styles.userInfoSection}>
@@ -29,16 +58,16 @@ export default function Profile(props) {
             </TouchableOpacity>
             <View style={{marginLeft: 50}}>
             <TextInput
-      style={{ height: 40,}}
-      onChangeText={text => onChangeText(text)}
-      //value={value}
-      placeholder="Unesite ime i prezime"
-    />
+                  style={{ height: 40, fontSize:18}}
+                  value={imePrezime}
+                  onChangeText={(text) => setImePrezime(text)}
+                  placeholder="Unesite ime i prezime"
+            />
             <TextInput
-      style={{ height: 40,}}
-      onChangeText={text => onChangeText(text)}
-      //value={value}
-      placeholder="Korisnicko ime"
+                  style={{ height: 40,fontSize:18}}
+                  value={korisnickoIme}
+                  onChangeText={(text) => setKorisnickoIme(text)}
+                  placeholder="Korisnicko ime"
     />
             </View>
           </View>
@@ -47,26 +76,35 @@ export default function Profile(props) {
         <View style={styles.userInfoSection}>
           <View style={styles.row}>
           <SimpleLineIcons name="user-unfollow" size={24} color="black" />
-          <TextInput
-      style={{ height: 40, marginLeft:25}}
-      onChangeText={text => onChangeText(text)}
-      placeholder="Koliko prekrsaja imate?"
+          <Input
+            style={{marginTop:15,alignItems:'center'}}
+            onChangeText={text => onChangeText(text)}
+            placeholder="Koliko prekrsaja imate?"
+            keyboardType={"numeric"} 
+            value={prekrsaj}
+            onChangeText={(text) => setPrekrsaji(text)}
     />
           </View>
           <View style={styles.row}>
           <Ionicons name="phone-portrait-outline" size={24} color="black" />
-          <TextInput
-      style={{ height: 40, marginLeft:25}}
+          <Input
+      style={{marginTop:15,alignItems:'center'}}
       onChangeText={text => onChangeText(text)}
-      placeholder="Vas broj telefona"
+      placeholder="Vas broj telefona."
+      keyboardType={"phone-pad"} 
+      value={telefon}
+      onChangeText={(text) => setTelefon(text)}
     />
           </View>
           <View style={styles.row}>
           <MaterialCommunityIcons name="email-open-multiple-outline" size={24} color="black" />
-          <TextInput
-      style={{ height: 40, marginLeft:25}}
+          <Input
+      style={{marginTop:15,alignItems:'center'}}
       onChangeText={text => onChangeText(text)}
-      placeholder="Vasa email adresa"
+      placeholder="Vasa e-mail adresa. "
+      keyboardType={"email-address"} 
+      value={email}
+      onChangeText={(text) => setEmail(text)}
     />
           </View>
         </View>
@@ -83,7 +121,7 @@ export default function Profile(props) {
             </View>
             */}
         </View>
-        <View style={styles.menuWrapper}>
+        {/*<View style={styles.menuWrapper}>
           <TouchableRipple onPress={() => {}}>
             <View style={styles.menuItem}>
             <AntDesign name="solution1" size={24} color="black" />
@@ -109,20 +147,22 @@ export default function Profile(props) {
             </View>
           </TouchableRipple>
           <TouchableRipple onPress={() => {}}>
-            <View style={styles.btn}>
+            
+          </TouchableRipple>
+          </View>*/}
+          <View style={styles.btn}>
               <Button 
-              title="Dodaj skill"
+              title="Spasi izmjene"
+              onPress={spasiIzmjene}
               ></Button>
             </View>
-          </TouchableRipple>
-        </View>
       </SafeAreaView>
         )
 }
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      marginTop:25,
+      marginTop:35,
     },
     userInfoSection: {
       paddingHorizontal: 30,
@@ -134,7 +174,6 @@ const styles = StyleSheet.create({
         padding:15,
         marginBottom:25,
     },
-
     caption: {
       fontSize: 15,
       lineHeight: 15,
@@ -144,6 +183,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       marginBottom: 10,
       alignItems:'center',
+      paddingRight:10,
     },
     infoBoxWrapper: {
       borderBottomColor: '#dddddd',
