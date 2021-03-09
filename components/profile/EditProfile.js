@@ -1,7 +1,6 @@
 import React from 'react'
 import {useState} from "react";
-
-import {View, Button, SafeAreaView,StyleSheet,TextInput,Image} from 'react-native'
+import {View, Button, SafeAreaView,StyleSheet,TextInput,TouchableOpacity} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -13,20 +12,34 @@ import{
 } from 'react-native-paper'
 
 export default function Profile(props) {
+    const [imePrezime,setImePrezime] = useState("")
+    const [korisnickoIme,setKorisnickoIme] = useState("")
+   //const [value, onChangeText] = React.useState('Useless Placeholder');
+
     return (
         <SafeAreaView style={styles.container}>
         <View style={styles.userInfoSection}>
           <View style={{flexDirection: 'row', marginTop: 15}}>
+          <TouchableOpacity>
+          
             <Avatar.Image 
               source={require('../../assets/zijad-turkovic.jpg')}
               size={80}
-            />
-            <View style={{marginLeft: 20}}>
-              <Title style={[styles.title, {
-                marginTop:15,
-                marginBottom: 5,
-              }]}>Zijad Turkovic</Title>
-              <Caption style={styles.caption}>@zika</Caption>
+              />
+            </TouchableOpacity>
+            <View style={{marginLeft: 50}}>
+            <TextInput
+      style={{ height: 40,}}
+      onChangeText={text => onChangeText(text)}
+      //value={value}
+      placeholder="Unesite ime i prezime"
+    />
+            <TextInput
+      style={{ height: 40,}}
+      onChangeText={text => onChangeText(text)}
+      //value={value}
+      placeholder="Korisnicko ime"
+    />
             </View>
           </View>
         </View>
@@ -34,33 +47,42 @@ export default function Profile(props) {
         <View style={styles.userInfoSection}>
           <View style={styles.row}>
           <SimpleLineIcons name="user-unfollow" size={24} color="black" />
-            <Text style={{color:"#777777", marginLeft: 20}}>40 Počinjenih krivičnih dijela</Text>
+          <TextInput
+      style={{ height: 40, marginLeft:25}}
+      onChangeText={text => onChangeText(text)}
+      placeholder="Koliko prekrsaja imate?"
+    />
           </View>
           <View style={styles.row}>
           <Ionicons name="phone-portrait-outline" size={24} color="black" />
-            <Text style={{color:"#777777", marginLeft: 20}}>+387 225 883</Text>
+          <TextInput
+      style={{ height: 40, marginLeft:25}}
+      onChangeText={text => onChangeText(text)}
+      placeholder="Vas broj telefona"
+    />
           </View>
           <View style={styles.row}>
           <MaterialCommunityIcons name="email-open-multiple-outline" size={24} color="black" />
-            <Text style={{color:"#777777", marginLeft: 20}}>zika_turkovic@email.com</Text>
+          <TextInput
+      style={{ height: 40, marginLeft:25}}
+      onChangeText={text => onChangeText(text)}
+      placeholder="Vasa email adresa"
+    />
           </View>
         </View>
-  
         <View style={styles.infoBoxWrapper}>
-            <View style={[styles.infoBox, {
-              borderRightColor: '#dddddd',
-              borderRightWidth: 1
-            }]}>
-                <AntDesign name="smileo" size={24} color="black" />
-              <Title>25 dojmova</Title>
+            <View style={[styles.infoBox]}>
+            <AntDesign name="profile" size={24} color="black" />
+              <Title>Pregled skillova</Title>
             </View>
+            {/*
             <View style={styles.infoBox}>
               <Button
               title="Uredi profil"
               ></Button>
             </View>
+            */}
         </View>
-  
         <View style={styles.menuWrapper}>
           <TouchableRipple onPress={() => {}}>
             <View style={styles.menuItem}>
@@ -74,10 +96,10 @@ export default function Profile(props) {
               <Text style={styles.menuItemText}>Pranje novca</Text>
             </View>
           </TouchableRipple>
-          <TouchableRipple>
+          <TouchableRipple onPress={() => {}}>
             <View style={styles.menuItem}>
             <AntDesign name="solution1" size={24} color="black" />
-              <Text style={styles.menuItemText}>Ubistva</Text>
+              <Text style={styles.menuItemText}>Tr</Text>
             </View>
           </TouchableRipple>
           <TouchableRipple onPress={() => {}}>
@@ -89,7 +111,7 @@ export default function Profile(props) {
           <TouchableRipple onPress={() => {}}>
             <View style={styles.btn}>
               <Button 
-              title="Pošalji poruku"
+              title="Dodaj skill"
               ></Button>
             </View>
           </TouchableRipple>
@@ -106,10 +128,13 @@ const styles = StyleSheet.create({
       paddingHorizontal: 30,
       marginBottom: 25,
     },
-    title: {
-      fontSize: 24,
-      fontWeight: 'bold',
+    textinput:{
+        borderLeftWidth: 4,
+        height: 30,
+        padding:15,
+        marginBottom:25,
     },
+
     caption: {
       fontSize: 15,
       lineHeight: 15,
@@ -127,6 +152,8 @@ const styles = StyleSheet.create({
       borderTopWidth: 1,
       flexDirection: 'row',
       height: 100,
+      justifyContent: 'center',
+
     },
     infoBox: {
       width: '50%',

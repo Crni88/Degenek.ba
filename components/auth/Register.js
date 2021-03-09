@@ -9,7 +9,6 @@ import {registerControler} from './loginController'
 
 export default function Register(props) {
       const [email,setemail] = useState("")
-      const [name,setname] = useState("")
       const [password,setpassword] = useState("")
 
       const registrirajUsera = () => {
@@ -23,19 +22,10 @@ export default function Register(props) {
         <View style={styles.register}>
             <SafeAreaView>
                     <Text style={styles.naslov}>Registriraj se na Degenek.ba</Text>
-                    
                 <Input 
-                placeholder={'Ime i prezime'} 
-                keyboardType={"default"} 
-                style={styles.input}
-                value={name}
-                onChangeText={(text) => setname(text)}
-                >
-                </Input>
-                <Input 
-                placeholder={'Email adresa'} 
                 keyboardType={"email-address"} 
                 style={styles.input}
+                placeholder={'Email adresa'} 
                 value={email}
                 onChangeText={(text) => setemail(text)}
                 >
