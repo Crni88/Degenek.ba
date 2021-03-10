@@ -1,27 +1,20 @@
 import React from 'react'
 import {useState} from "react";
-
 import { View,Text,StyleSheet, SafeAreaView,Button } from 'react-native'
 import { Input } from 'react-native-elements';
-
-
 import {loginController} from './loginController'
 
 export default function Login(props) {
     const [email,setemail] = useState("")
-    const [name,setname] = useState("")
     const [password,setpassword] = useState("")
 
     const ulogujUsera = () => {
-        //console.log("Email ",email," Password ", password);
         loginController(email,password,loginComplete);
     }
     
     const loginComplete = (user)=>{
-        //Ovdje ispisem taj user ID
         console.log("User:" ,user);
-        const id = user;
-        props.navigation.navigate('Profile',id);
+        props.navigation.navigate('Profile',{user});
     }
 
     return (

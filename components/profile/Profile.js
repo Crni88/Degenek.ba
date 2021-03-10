@@ -1,6 +1,5 @@
 import React from 'react'
 import {useState} from "react";
-
 import {View, Button, SafeAreaView,StyleSheet,TextInput,Image} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,10 +10,15 @@ import { AntDesign } from '@expo/vector-icons';
 import{
     Avatar,Title,Caption,Text,TouchableRipple,
 } from 'react-native-paper'
+import firebase from '../../firebase/firebase'
+import EditProfile from '../profile/EditProfile';
 
-export default function Profile(profilKorisnika) {
-  //KAKO ONDA OVDJE ISPISE CITAV JEBENI OBJEKAT :)) 
-  console.log("Profil korisnika",profilKorisnika);
+
+export default function Profile(props) {
+  //console.log("Profil korisnika ",props.route.params.user);
+  //const trenutniUserID = props.route.params.user;
+  const email = firebase.auth().currentUser.email;
+
     return ( 
         <SafeAreaView style={styles.container}>
         <View style={styles.userInfoSection}>
@@ -44,7 +48,8 @@ export default function Profile(profilKorisnika) {
           </View>
           <View style={styles.row}>
           <MaterialCommunityIcons name="email-open-multiple-outline" size={24} color="black" />
-            <Text style={{color:"#777777", marginLeft: 20}}>{}</Text>
+            <Text style={{color:"#777777", marginLeft: 20}}>{email}</Text>
+            
           </View>
         </View>
   
@@ -58,6 +63,7 @@ export default function Profile(profilKorisnika) {
             </View>
             <View style={styles.infoBox}>
               <Button
+              onPress={()=> props.navigation.navigate('EditProfile',{email})}
               title="Uredi profil"
               ></Button>
             </View>

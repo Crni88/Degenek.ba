@@ -16,13 +16,15 @@ import{
 import {addUserData} from '../auth/loginController'
 
 
-export default function Profile(props) {
+export default function Profile(props,adresa) {
+    //Use states
     const [imePrezime,setImePrezime] = useState("")
     const [korisnickoIme,setKorisnickoIme] = useState("")
     const [prekrsaj,setPrekrsaji] = useState("")
     const [telefon,setTelefon] = useState("")
     const [email,setEmail] = useState("")
 
+    console.log(props);
    //const [value, onChangeText] = React.useState('Useless Placeholder');
 
    const spasiIzmjene = () =>{
@@ -31,7 +33,6 @@ export default function Profile(props) {
     console.log("Korisnicko ime korisnika je",prekrsaj);
     console.log("Korisnicko ime korisnika je",telefon);
     console.log("Korisnicko ime korisnika je",email);*/
-      
     const korisnikoviPodaci ={
         _imePrezime : imePrezime,
         _korisnickoIme:korisnickoIme,
@@ -40,7 +41,7 @@ export default function Profile(props) {
         _email:email
       }
       console.log(korisnikoviPodaci);
-     // addUserData("kahric.tarik@gmail.com","123456",korisnikoviPodaci,editComplete);
+      addUserData("kahric.tarik@gmail.com","123456",korisnikoviPodaci,editComplete);
    }
    const editComplete = ()=>{
        console.log("Uspjesno ste editovali korisnika");
@@ -88,25 +89,25 @@ export default function Profile(props) {
           <View style={styles.row}>
           <Ionicons name="phone-portrait-outline" size={24} color="black" />
           <Input
-      style={{marginTop:15,alignItems:'center'}}
-      onChangeText={text => onChangeText(text)}
-      placeholder="Vas broj telefona."
-      keyboardType={"phone-pad"} 
-      value={telefon}
-      onChangeText={(text) => setTelefon(text)}
-    />
+          style={{marginTop:15,alignItems:'center'}}
+          onChangeText={text => onChangeText(text)}
+          placeholder="Vas broj telefona."
+          keyboardType={"phone-pad"} 
+          value={telefon}
+          onChangeText={(text) => setTelefon(text)}
+          />
           </View>
           <View style={styles.row}>
           <MaterialCommunityIcons name="email-open-multiple-outline" size={24} color="black" />
           <Input
-      style={{marginTop:15,alignItems:'center'}}
-      onChangeText={text => onChangeText(text)}
-      placeholder="Vasa e-mail adresa. "
-      keyboardType={"email-address"} 
-      value={email}
-      onChangeText={(text) => setEmail(text)}
-    />
-          </View>
+          style={{marginTop:15,alignItems:'center'}}
+          onChangeText={text => onChangeText(text)}
+          placeholder="Vasa e-mail adresa. "
+          keyboardType={"email-address"} 
+          //value={}
+          onChangeText={(text) => setEmail(text)}
+        />
+        </View>
         </View>
         <View style={styles.infoBoxWrapper}>
             <View style={[styles.infoBox]}>

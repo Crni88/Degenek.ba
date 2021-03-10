@@ -1,11 +1,8 @@
 import React from 'react'
 import {useState} from "react";
-
 import {View, Button, SafeAreaView,StyleSheet,Text,TextInput} from 'react-native'
 import { Input } from 'react-native-elements';
-
 import {registerControler} from './loginController'
-
 
 export default function Register(props) {
       const [email,setemail] = useState("")

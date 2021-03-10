@@ -22,9 +22,10 @@ export function registerControler(email,password,loginComplete) {
 export function addUserData(email,password,userData,editComplete){
     firebase.auth().signInWithEmailAndPassword(email,password)
     .then((res)=>{
+        console.log("Proslo je res -->",res);
         firebase.database().ref('users/'+res.user.uid).set({
             ImePrezime:userData._imePrezime,
-            ImePrezime:userData._imePrezime,
+            KorisnickoIme:userData._korisnickoIme,
             brojPrekrsaja:userData._brojPrekrsaja,
             telefon:userData._telefon,
             email:userData._email,
