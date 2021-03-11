@@ -18,7 +18,7 @@ export default function Profile(props) {
   //console.log("Profil korisnika ",props.route.params.user);
   //const trenutniUserID = props.route.params.user;
   const email = firebase.auth().currentUser.email;
-
+  
     return ( 
         <SafeAreaView style={styles.container}>
         <View style={styles.userInfoSection}>

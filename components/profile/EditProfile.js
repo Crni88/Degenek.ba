@@ -14,9 +14,10 @@ import{
 } from 'react-native-paper'
 
 import {addUserData} from '../auth/loginController'
+import firebase from '../../firebase/firebase'
 
 
-export default function Profile(props,adresa) {
+export default function EditProfile(props,adresa) {
     //Use states
     const [imePrezime,setImePrezime] = useState("")
     const [korisnickoIme,setKorisnickoIme] = useState("")
@@ -24,7 +25,7 @@ export default function Profile(props,adresa) {
     const [telefon,setTelefon] = useState("")
     const [email,setEmail] = useState("")
 
-    console.log(props);
+    //console.log("Edit profile props",props);
    //const [value, onChangeText] = React.useState('Useless Placeholder');
 
    const spasiIzmjene = () =>{
@@ -40,7 +41,9 @@ export default function Profile(props,adresa) {
         _telefon:telefon,
         _email:email
       }
-      console.log(korisnikoviPodaci);
+      const user = firebase.auth().currentUser;
+
+      console.log("Trenutni user je ",user.providerData.email);
       addUserData("kahric.tarik@gmail.com","123456",korisnikoviPodaci,editComplete);
    }
    const editComplete = ()=>{
@@ -64,12 +67,12 @@ export default function Profile(props,adresa) {
                   onChangeText={(text) => setImePrezime(text)}
                   placeholder="Unesite ime i prezime"
             />
-            <TextInput
+                <TextInput
                   style={{ height: 40,fontSize:18}}
                   value={korisnickoIme}
                   onChangeText={(text) => setKorisnickoIme(text)}
                   placeholder="Korisnicko ime"
-    />
+                />
             </View>
           </View>
         </View>
@@ -84,7 +87,7 @@ export default function Profile(props,adresa) {
             keyboardType={"numeric"} 
             value={prekrsaj}
             onChangeText={(text) => setPrekrsaji(text)}
-    />
+          />
           </View>
           <View style={styles.row}>
           <Ionicons name="phone-portrait-outline" size={24} color="black" />
