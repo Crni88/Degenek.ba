@@ -44,7 +44,7 @@ export default function EditProfile(props,adresa) {
       const user = firebase.auth().currentUser;
 
       console.log("Trenutni user je ",user.providerData.email);
-      addUserData("kahric.tarik@gmail.com","123456",korisnikoviPodaci,editComplete);
+      addUserData(korisnikoviPodaci,editComplete);
    }
    const editComplete = ()=>{
        console.log("Uspjesno ste editovali korisnika");

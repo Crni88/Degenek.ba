@@ -1,6 +1,10 @@
+//React
 import React from 'react'
 import {useState} from "react";
 import {View, Button, SafeAreaView,StyleSheet,TextInput,Image} from 'react-native'
+import React, { useEffect } from 'react';
+
+//Icons
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -8,18 +12,21 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import{
-    Avatar,Title,Caption,Text,TouchableRipple,
+  Avatar,Title,Caption,Text,TouchableRipple,
 } from 'react-native-paper'
-import firebase from '../../firebase/firebase'
-import EditProfile from '../profile/EditProfile';
 
+import firebase from '../../firebase/firebase'
+//Components
+import EditProfile from '../profile/EditProfile';
+import {getUser} from '../auth/loginController'
 
 export default function Profile(props) {
-  //console.log("Profil korisnika ",props.route.params.user);
-  //const trenutniUserID = props.route.params.user;
-  const email = firebase.auth().currentUser.email;
   
-    return ( 
+  const email = firebase.auth().currentUser.email;
+
+  const [doneState, setDone] = useState(false);
+
+  return ( 
         <SafeAreaView style={styles.container}>
         <View style={styles.userInfoSection}>
           <View style={{flexDirection: 'row', marginTop: 15}}>

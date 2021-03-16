@@ -19,21 +19,8 @@ export function registerControler(email,password,loginComplete) {
     .catch((error)=>console.log("Error -> " ,error));
 }
 
-export function addUserData(email,password,userData,editComplete){
+export function addUserData(userData,editComplete){
     const user = firebase.auth().currentUser.uid;
-    //console.log(user);
-    /* firebase.auth().signInWithEmailAndPassword(email,password)
-    .then((res)=>{
-        //console.log("Proslo je res -->",res);
-        firebase.database().ref('users/'+res.user.uid).set({
-            ImePrezime:userData._imePrezime,
-            KorisnickoIme:userData._korisnickoIme,
-            brojPrekrsaja:userData._brojPrekrsaja,
-            telefon:userData._telefon,
-            email:userData._email,
-        })
-        editComplete();
-    }) .catch((error)=>console.log("Error -> " ,error)); */
     firebase.database().ref('users/'+user).set({
         ImePrezime:userData._imePrezime,
         KorisnickoIme:userData._korisnickoIme,
@@ -41,4 +28,11 @@ export function addUserData(email,password,userData,editComplete){
         telefon:userData._telefon,
         email:userData._email,
     });
+}
+
+export async function getUser(recivedUserData){
+    const user = firebase.auth().currentUser.uid;
+    const userDocument = firestore()
+    .collection('Users')
+    .doc('user');
 }
